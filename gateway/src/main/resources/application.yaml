@@ -1,0 +1,65 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: baidu_route
+          uri: https://www.baidu.com
+          predicates:
+            - Query=url,baidu
+
+        - id: qq_route
+          uri: https://www.qq.com
+          predicates:
+            - Query=url,qq
+
+        - id: product_route
+          uri: lb://mall-product
+          predicates:
+             - Path=/api/product/**
+          filters:
+                #重写路径,将指定的路径更换为另一个指定的路径
+             - RewritePath=/api/?(?<segment>.*), /$\{segment}
+
+        - id: product_route
+          uri: lb://mall-ware
+          predicates:
+            - Path=/api/ware/**
+          filters:
+              #重写路径,将指定的路径更换为另一个指定的路径
+            - RewritePath=/api/?(?<segment>.*), /$\{segment}
+
+        - id: member_route
+          uri: lb://mall-member
+          predicates:
+           - Path=/api/member/**
+          filters:
+           #重写路径,将指定的路径更换为另一个指定的路径
+           - RewritePath=/api/?(?<segment>.*), /$\{segment}
+
+
+        - id: third_party_route
+          uri: lb://mall-third-party
+          predicates:
+           - Path=/api/thirdparty/**
+          filters:
+           - RewritePath=/api/thirdparty/?(?<segment>.*),/$\{segment}
+
+          #前端发送的请求,先到人人开源的后端
+      ##http://localhost:88/api/captcha.jap -> https:localhost:8080/renren-fast/captcha.jpg
+        - id: admin_route
+          uri: lb://renren-fast
+          predicates:
+            - Path=/api/**
+          filters:
+            #重写路径,将指定的路径更换为另一个指定的路径
+            - RewritePath=/api/?(?<segment>.*), /renren-fast/$\{segment}
+
+    nacos:
+      discovery:
+        #指定nacos的服务地址
+        server-addr: 127.0.0.1:8848
+      #为要注册到nacos的服务起服务名称,否则将注册不到
+    application:
+      name: mall-gateway
+server:
+  port: 88

@@ -1,0 +1,22 @@
+#spring:
+#  application:
+#    name: mall-coupon # 服务名称
+#  cloud:
+#    nacos:
+#      config:
+#        server-addr: localhost:8848 # Nacos地址
+#        file-extension: yaml
+#        namespace: e39391cd-978d-4dd0-8d5a-2fba8fc5e451f
+#        ext-config[0]:
+#             data-id: mybatis.yaml
+#             group: dev
+#             refrash: true
+#        ext-config[1]:
+#          data-id: datasource.yaml
+#          group: dev
+#          refrash: true
+#        ext-config[2]:
+#          data-id: other.yaml
+#          group: dev
+#          refrash: true
+#

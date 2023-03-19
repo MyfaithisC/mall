@@ -1,0 +1,31 @@
+spring:
+  cloud:
+
+    nacos:
+      discovery:
+      #指定nacos的服务地址
+        server-addr: 127.0.0.1:8848
+      #为要注册到nacos的服务起服务名称,否则将注册不到
+  application:
+    name: mall-product
+  datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/gulimall_pms?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: root
+      password: 123456
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+
+# MapperScan
+# sql映射文件位置
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-value: 1  #逻辑删除的值
+      logic-not-delete-value: 0   #逻辑不删除的值
+server:
+  port: 10000

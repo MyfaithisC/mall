@@ -1,0 +1,26 @@
+##server:
+##  port: 7000
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/gulimall_sms?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+#    username: root
+#    password: 123456
+##  cloud:
+##    nacos:
+##      discovery:
+##        #指定nacos的服务地址
+##        server-addr: 127.0.0.1:8848
+##      #为要注册到nacos的服务起服务名称,否则将注册不到
+##  application:
+##    name: mall-coupon
+### MapperScan
+### sql映射文件位置
+##mybatis-plus:
+##  mapper-locations: classpath:/mapper/**/*.xml
+##  global-config:
+##    db-config:
+##      id-type: auto
+##coupon:
+##  username: zhangsan
+##  age: 20
